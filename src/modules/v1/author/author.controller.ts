@@ -23,21 +23,26 @@ const createAuthor = async (
 };
 
 const readAuthor = async (req: Request, res: Response, next: NextFunction) => {
-  const authorId = req.params.authorId;
-
-  return await Author.findById(authorId)
-    .then((author) =>
-      author
-        ? res.status(200).json({ author })
-        : res.status(404).json({ message: 'not found' })
-    )
-    .catch((error) => res.status(500).json({ error }));
+  try {
+    const authorId = req.params.authorId;
+    const author = await Author.findById(authorId);
+    return res
+      .status(200)
+      .json(success('Books retrieved successfully', author));
+  } catch (error) {
+    return next(error);
+  }
 };
 
 const readAll = async (req: Request, res: Response, next: NextFunction) => {
-  return await Author.find()
-    .then((authors) => res.status(200).json({ authors }))
-    .catch((error) => res.status(500).json({ error }));
+  try {
+    const allAuthor = await Author.find();
+    return res
+      .status(200)
+      .json(success('Authors retrieved successful', allAuthor));
+  } catch (error) {
+    return next(error);
+  }
 };
 
 const updateAuthor = async (

@@ -2,6 +2,9 @@ import mongoose from 'mongoose';
 import { success } from '../../common/utils';
 import Book from '../../../database/models/book.model';
 import { NextFunction, Request, Response } from 'express';
+// import { Books, ExcludedAttribs } from '../../../types';x
+
+// type Props = Omit<Books, ExcludedAttribs>;
 
 const createBook = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -22,10 +25,10 @@ const createBook = async (req: Request, res: Response, next: NextFunction) => {
 const readBook = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const bookId = req.params.bookId;
-    await Book.findById(bookId).populate('author');
+    const book = await Book.findById(bookId).populate('author');
     return res
       .status(200)
-      .json(success('Books retrieved successfully', bookId));
+      .json(success('Books retrieved successfully',{book}));
   } catch (error) {
     return next(error);
   }
@@ -40,9 +43,6 @@ const readAll = async (req: Request, res: Response, next: NextFunction) => {
   } catch (error) {
     return next(error);
   }
-  // return await Book.find()
-  //   .then((books) => res.status(200).json({ books }))
-  //   .catch((error) => res.status(500).json({ error }));
 };
 
 const updateBook = async (req: Request, res: Response, next: NextFunction) => {

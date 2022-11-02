@@ -1,6 +1,7 @@
 import { Request } from 'express';
 import { ModelCtor } from 'sequelize';
 
+type ExcludedAttribs = "createdAt" | "updatedAt" | "deletedAt";
 interface User {
   id?: string;
   name: string;
@@ -10,6 +11,17 @@ interface User {
   createdAt?: string;
   updatedAt?: string;
   deletedAt?: string;
+}
+
+interface Books {
+  _id?: string;
+  title: string;
+  author: string;
+}
+
+interface Author {
+  _id?: string;
+  name: string;
 }
 
 type Models = {

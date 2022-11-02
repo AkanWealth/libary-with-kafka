@@ -10,7 +10,7 @@ import * as Tracing from '@sentry/tracing';
 
 import routes from './routes';
 import mongoose from 'mongoose';
-import { dbConfig } from './database/config/database';
+import { dbConfig } from './database/config/config';
 import Logging from './modules/common/Logging';
 import rateLimit from 'express-rate-limit';
 import { errorHandler } from './modules/common/utils';

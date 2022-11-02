@@ -45,6 +45,7 @@
         "helmet": "^4.6.0",
         "joi": "^17.6.4",
         "jsonwebtoken": "^8.5.1",
+        "kafkajs": "^2.2.2",
         "mongoose": "^6.7.0",
         "nanoid": "^3.1.25",
         "node-rdkafka": "^2.14.2-1.HEAD",
